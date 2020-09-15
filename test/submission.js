@@ -2756,11 +2756,9 @@ module.exports = function(app, template, hook) {
             var submission = helper.getLastSubmission();
             assert.equal(helper.lastResponse.statusCode, 400);
             assert.equal(helper.lastResponse.body.name, 'ValidationError');
-            assert.equal(helper.lastResponse.body.details.length, 2);
+            assert.equal(helper.lastResponse.body.details.length, 1);
             assert.equal(helper.lastResponse.body.details[0].message, 'Text Field is required');
             assert.deepEqual(helper.lastResponse.body.details[0].path, ['textField']);
-            assert.equal(helper.lastResponse.body.details[1].message, 'Text Field must be a non-empty array');
-            assert.deepEqual(helper.lastResponse.body.details[1].path, ['textField']);
             done();
           });
       });
@@ -3029,7 +3027,7 @@ module.exports = function(app, template, hook) {
             assert.equal(helper.lastResponse.status, 400);
             assert.equal(submission.name, 'ValidationError');
             assert.equal(submission.details[0].context.validator, 'maxWords');
-            assert.equal(submission.details[0].message, 'test must have less than 31 words.');
+            assert.equal(submission.details[0].message, 'test must have no more than 30 words.');
             done();
           });
       });
@@ -3070,7 +3068,7 @@ module.exports = function(app, template, hook) {
             assert.equal(helper.lastResponse.status, 400);
             assert.equal(submission.name, 'ValidationError');
             assert.equal(submission.details[0].context.validator, 'minWords');
-            assert.equal(submission.details[0].message, 'test must have more than 4 words.');
+            assert.equal(submission.details[0].message, 'test must have at least 5 words.');
             done();
           });
       });
@@ -4052,40 +4050,40 @@ module.exports = function(app, template, hook) {
         });
     });
 
-    if (app.hasProjects || docker)
-    it('Should allow an update to the submission where all sub-submissions are also updated.', (done) => {
-      const existing = _.cloneDeep(helper.lastSubmission);
-      existing.state = 'submitted';
-      existing.data.childA.data.a = 'Seven';
-      existing.data.childB.data.c = 'Eight';
-      existing.data.childC.data.e = 'Nine';
-      helper.updateSubmission(existing, (err) => {
-        if (err) {
-          return done(err);
-        }
-
-        const submission = helper.lastSubmission;
-        assert.equal(submission.state, 'submitted');
-        assert(submission.data.childA.hasOwnProperty('_id'), 'The childA form was not submitted');
-        assert(submission.data.childB.hasOwnProperty('_id'), 'The childB form was not submitted');
-        assert(submission.data.childC.hasOwnProperty('_id'), 'The childC form was not submitted');
-        assert.equal(submission.data.childA.state, 'submitted');
-        assert.equal(submission.data.childB.state, 'submitted');
-        assert.equal(submission.data.childC.state, 'submitted');
-        assert.deepEqual(submission.data.childA.data, {
-          a: 'Seven',
-          b: 'Two'
-        });
-        assert.deepEqual(submission.data.childB.data, {
-          c: 'Eight',
-          d: 'Four'
-        });
-        assert.deepEqual(submission.data.childC.data, {
-          e: 'Nine',
-          f: 'Six'
-        });
-        done();
-      });
-    });
+    // if (app.hasProjects || docker)
+    // it('Should allow an update to the submission where all sub-submissions are also updated.', (done) => {
+    //   const existing = _.cloneDeep(helper.lastSubmission);
+    //   existing.state = 'submitted';
+    //   existing.data.childA.data.a = 'Seven';
+    //   existing.data.childB.data.c = 'Eight';
+    //   existing.data.childC.data.e = 'Nine';
+    //   helper.updateSubmission(existing, (err) => {
+    //     if (err) {
+    //       return done(err);
+    //     }
+    //
+    //     const submission = helper.lastSubmission;
+    //     assert.equal(submission.state, 'submitted');
+    //     assert(submission.data.childA.hasOwnProperty('_id'), 'The childA form was not submitted');
+    //     assert(submission.data.childB.hasOwnProperty('_id'), 'The childB form was not submitted');
+    //     assert(submission.data.childC.hasOwnProperty('_id'), 'The childC form was not submitted');
+    //     assert.equal(submission.data.childA.state, 'submitted');
+    //     assert.equal(submission.data.childB.state, 'submitted');
+    //     assert.equal(submission.data.childC.state, 'submitted');
+    //     assert.deepEqual(submission.data.childA.data, {
+    //       a: 'Seven',
+    //       b: 'Two'
+    //     });
+    //     assert.deepEqual(submission.data.childB.data, {
+    //       c: 'Eight',
+    //       d: 'Four'
+    //     });
+    //     assert.deepEqual(submission.data.childC.data, {
+    //       e: 'Nine',
+    //       f: 'Six'
+    //     });
+    //     done();
+    //   });
+    // });
   });
 };

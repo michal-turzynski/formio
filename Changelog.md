@@ -4,6 +4,114 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/)
 
+## 2.0.0-rc.13
+### Fixed
+ - FOR-2719: Fixes an issue where new actions and removed actions weren't deployed on a stage.
+ - Ensure we also check hostname when checking the NO_PROXY environment variable.
+
+### Changed
+ - FOR-2722: Updated a test for Webhook actions.
+ - Upgrade mongodb@3.6.1
+
+## 2.0.0-rc.12
+### Fixed
+ - Ensure the mongoSA variables are always set correctly.
+ - Fixing an issue with the form revisions not getting set correctly when loading with full=true.
+
+### Changed
+ - Upgrade chance@1.1.7, formiojs@4.11.3, mongoose@5.10.2, mocha@8.1.3, eslint@7.8.0
+
+## 2.0.0-rc.11
+### Removed
+ - Method override for security reasons.
+
+## 2.0.0-rc.10
+### Fixed
+ - FJS-1129: fixes an issue where the Custom Error Message is not used for the Unique validation error
+ - FOR-2728: modified CSVExporter preprocessor to convert roadio component data to string
+
+### Added
+ - A way to include the mongoCA certificate as a file path.
+
+### Changed
+ - Changing configuration (with reverse compatibility) of the mongoSA variable to the more correct mongoCA name.
+
+## 2.0.0-rc.8
+### Changed
+ - Merged changes from 1.x
+
+## 2.0.0-rc.8
+### Changed
+ - Group permissions so that it can handle more complex group assignments.
+ - Upgrade mongoose@5.9.25, eslint@7.5.0
+
+## 2.0.0-rc.7
+### Fixed
+ - FOR-2708: Remove resource from action if it was not found on import.
+ - FJS-1049: Fixed CSV export of components with minimized schema.
+ - Fixed setting of formRevision property on import when revisions are enabled.
+
+## 2.0.0-rc.5-6
+### Changed
+ - Updated logging functionality.
+
+## 2.0.0-rc.1-4
+### Changed
+ - Merge changes from 1.x
+
+## 2.0.0-beta.10
+### Changed
+ - Update formio.js to 4.1.0-rc.13
+
+## 2.0.0-beta.9
+### Changed
+ - retagging
+
+## 2.0.0-beta.8
+### Added
+ - Additional options to fetch wrapper.
+
+## 2.0.0-beta.7
+### Added
+ - New hooks to extend the authentication system.
+
+### Changed
+ - Update formio.js to 4.1.0-rc.6
+
+## 2.0.0-beta.6
+### Added
+ - Add tree validation to server.
+ - Mongo SSL Certificate options.
+
+### Changed
+ - Replace request library with node-fetch.
+ - Updated formio.js to 4.10.0-rc.4 to fix isomorphic validation.
+
+## 2.0.0-beta.5
+### Changed
+ - Upgrade dependencies.
+ - FJS 864: Fixed login action resources limitation
+ - Set email for User and Admin ressource required & unique
+ - Fixed server crash on invalid x-query
+
+## 2.0.0-beta.4
+### Added
+ - Hooks for the alias.
+ - Hooks for the formResponse.
+
+### Changed
+ - Upgrade mongodb@3.5.5, mongoose@5.9.4, nodemailer@6.4.5, mssql@6.2.0
+ - Upgrade formiojs@4.9.0-rc.10
+ - Ensure that field actions are triggered on dryrun.
+
+## 2.0.0-beta.3
+#### Changed
+ - Upgrade formiojs@4.9.0-rc.6
+
+## 2.0.0-beta.2
+#### Changed
+ - Upgrading dependencies.
+
 ## 2.0.0-beta.1
 ### Breaking Changes
  - Isomorphic validations. May cause error interface and codes to change slightly.
@@ -11,6 +119,153 @@ and this project adheres to [Semantic Versioning](http://semver.org/)
 ### Changed
  - Upgrade mongodb@3.5.4, async@3.2.0
  - Upgrade ResourceJS@2.0.0
+
+## 1.90.7
+### Fixed
+ - Problem where the req.params would get removed before sending off emails.
+
+## 1.90.6
+### Fixed
+ - Upgrade formiojs@4.11.2-rc.4 so it will remove errors about Element not defined.
+
+## 1.90.5
+### Added
+ - Add TLS connection for mongoose connection as well.
+
+## 1.90.4
+### Changed
+ - Upgrade dependencies.
+
+### Fixed
+ - FOR-2708: Remove resource from action if it was not found on import.
+ - FJS-1049: Fixed CSV export of components with minimized schema.
+
+## 1.90.3
+### Changed
+ - Fixed setting of formRevision property on import when revisions are enabled.
+
+## 1.90.2
+### Changed
+ - Cherry pick email fix for large emails.
+
+## 1.90.1
+### Changed
+ - Resource.js library to 2.3.1 to revert change in aggregation.
+
+## 1.90.0
+### Fixed
+ - A bad revert.
+
+## 1.89.0
+### Changed
+ - Revert "Added a middleware for loading a full form schema for use component settings.
+
+## 1.88.0
+### Fixed
+ - FOR-2707: Fixes an issue where the PATCH request was being failed if a form has a nested form as reference.
+ - Server crashes when a bad query is passed to ResourceJS
+ - Added a middleware for loading a full form schema for use component settings.
+
+## 1.87.0
+### Fixed
+ - Export of form controllers.
+
+## 1.86.0
+### Fixed
+ - FJS-704: Address Refactor Issues
+ - Refactored for the verbose health endpoint
+ - Fixed Form Controller export.
+
+### Added
+ - Support Extra form fields exporting
+
+### Changed
+ - Upgraded formio-workers@1.14.8, mongodb@3.5.9, mongoose@5.9.19, nodemailer@6.4.10, formiojs@4.10.2, fs-extra@9.0.1, resourcejs@2.2.0, mocha@8.0.1
+
+## 1.85.0
+### Changed
+ - FJS-953: Fixed getting error when exporting scv with time inside dataGrid
+ - PDF 14 - Allow PDF Submission endpoint to be retrieved by 'Form Alias'
+
+## 1.84.0
+### Fixed
+ - Fixed callback invocation after alterFormSave series.
+
+## 1.83.0
+### Changed
+ - Update chance@1.1.6, formio-workers@1.14.7, mongodb@3.5.8, mongoose@5.9.16, nodemailer@6.4.8, moment@2.26.0, eslint@7.1.0, mocha@7.2.0
+
+### Fixed
+ - FOR-2665: Ensure calculate value eval context
+
+## 1.82.0
+### Added
+ - Template import/export improvements.
+
+## 1.81.0
+### Added
+ - Fix (Tree): added validation schema.
+
+## 1.80.0
+### Changed
+ - FJS-917: Add options to use SSL Certs with Mongo connection.
+
+## 1.79.0
+### Added
+ - More options for mapping Save Submission action to a Resource.
+
+## 1.78.0
+### Changed
+ - Reverted action logs to save correctly.
+
+### Fixed
+ - Problem where malformed data could throw errors.
+
+## 1.77.0
+### Fixed
+ - Issue with email renderings not working with workers upgrade.
+ - EditGrid issues when exported in CSV format.
+
+## 1.76.0
+### Fixed
+ - FJS 864: Fixed login action resources limitation
+ - Fixed server crash on invalid x-query
+
+## 1.75.0
+### Fixed
+ - Issues where loading subforms could lose references.
+
+### Changed
+ - Upgrade formiojs@4.9.19
+
+## 1.74.0
+### Changed
+ - Upgrade formiojs@4.9.18, mongodb@3.5.6, mongoose@5.9.9, nodemon@2.0.3, html-entities@1.3.1, semver@7.3.2
+
+### Added
+ - Debug messages to the loadSubForms method.
+ - Validator for tagpad component.
+
+## 1.73.0
+### Fixed
+ - Validations for checkboxes configured as radio inputs.
+
+### Changed
+ - Upgrade config@3.3.1, formiojs@4.9.13, mongoose@5.9.7, nodemailer@6.4.6, mocha@7.1.1
+
+## 1.72.0
+### Changed
+ - Upgrade mongoose@5.9.5
+
+### Fixed
+ - Fixed CSVExporter: Add default format for datetime
+
+## 1.71.0
+### Changed
+ - Upgrade csv@5.3.2, mongodb@3.5.5, mongoose@5.9.4, nodemailer@6.4.5, async@3.2.0, config@3.3.0, mssql@6.2.0, mocha@7.1.0
+
+### Fixed
+ - Fixing dryrun for field actions so they execute, and adding more hooks for formResponse and alias.
 
 ## 1.70.0
 ### Added
